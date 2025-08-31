@@ -1,6 +1,6 @@
 # crypto-cycles-vs-macro-
 
-## 📌 Cel projektu
+## Cel projektu
 Celem projektu jest zbadanie przepływu kapitału w kryptowalutach (BTC → ETH → Altcoins) oraz jego zależności od globalnej koniunktury rynkowej.  
 Projekt łączy analizę danych finansowych (crypto + rynki tradycyjne + dane makro) z wizualizacjami w Tableau.
 
