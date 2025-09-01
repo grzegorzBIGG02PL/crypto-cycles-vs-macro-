@@ -19,7 +19,8 @@ Projekt łączy analizę danych finansowych (crypto + rynki tradycyjne + dane ma
 ## ⚙️ Źródła danych
 - Binance API – ceny i wolumeny BTC, ETH, Altcoins  
 - Yahoo Finance API – indeksy (S&P500, Nasdaq), złoto, dolar (DXY)  
-- FRED (Federal Reserve Economic Data) – stopy procentowe, inflacja  
+- FRED (Federal Reserve Economic Data) – stopy procentowe, inflacja
+- CoinGecko - dane dotyczące market cap - Crypto, Bitcoin, Etherum
 
 ## 📊 Analiza
 - Dominacja BTC/ETH/Altcoins – udział w kapitalizacji/wolumenie  
