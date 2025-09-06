@@ -13,7 +13,7 @@ names(total_raw)
 head(total_raw)
 
 # data początkowa zbioru danych 
-start_date <- as.Date("2023-04-29")
+start_date <- as.Date("2013-04-29")
 
 # stworzenie kolumny z datą dodawaną
 total_with_dates <- total_raw %>%
