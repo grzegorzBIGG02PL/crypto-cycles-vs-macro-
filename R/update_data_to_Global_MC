@@ -1,0 +1,28 @@
+
+# załadowanie bibliotek
+library(tidyverse)  # readr/dplyr/ggplot2 itd.
+library(lubridate)  # daty
+
+# wczytanie surowych danych
+total_raw <- read_csv("crypto_history_Global_MC.csv")
+
+# kontrola schematu , names - nazwy kolumn, head - pierwsze wiersze podgląd
+
+names(total_raw)
+head(total_raw)
+
+# data początkowa zbioru danych 
+start_date <- as.Date("2023-04-29")
+
+# stworzenie kolumny z datą dodawaną
+total_with_dates <- total_raw %>%
+mutate(date = start_date + 0:(n()-1)) %>% # kolejne dni
+relocate(date)
+
+# test wyniku
+head(total_with_dates) 
+tail(total_with_dates) 
+glimpse(total_with_dates)
+
+#zapis nowych danych
+write_csv(total_with_dates, "total_marketcap_with_date.csv")
