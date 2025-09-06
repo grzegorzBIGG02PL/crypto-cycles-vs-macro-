@@ -1,3 +1,4 @@
+## Skrypt na podstawie danych z data/crypto_history_Global_MC.csv przekształce dane historyczne dotyczące sumy kapitalizacji rynku kryptowalut do danych z kolumną daty - data/total_marketcap_with_date.csv
 
 # załadowanie bibliotek
 library(tidyverse)  # readr/dplyr/ggplot2 itd.
