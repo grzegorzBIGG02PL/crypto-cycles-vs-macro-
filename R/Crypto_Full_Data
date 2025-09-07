@@ -1,0 +1,36 @@
+## Skrypt łączący dane poszczególnych plików danych do jednej wspólnej bazy. Dodatkowo wyliczanie kapitalizacji altcoinów oraz dominacji poszczególnych.
+
+library(tidyverse)   # zawiera readr do CSV, dplyr do manipulacji danych
+library(lubridate)   # do łatwej pracy z datami
+
+btc <- read_csv("crypto_history_BTC_MC.csv") %>%
+  rename(date = snapped_at, BTC_market_cap = market_cap) %>%
+  mutate(date = as.Date(date)) %>%  # zamiana na obiekt Date
+  select(date, BTC_market_cap)       # wybór jedynie potrzebnych kolumn
+
+eth <- read_csv("crypto_history_ETH_MC.csv") %>%
+  rename(date = snapped_at, ETH_market_cap = market_cap) %>%
+  mutate(date = as.Date(date)) %>%
+  select(date, ETH_market_cap)
+
+total <- read_csv("total_marketcap_with_date.csv") %>%
+  select(date, Total_market_cap = market_cap)
+
+crypto <- total %>%
+  full_join(btc, by = "date") %>%    # łączy total i BTC po dacie
+  full_join(eth, by = "date") %>%    # łączy wynik z ETH po dacie
+  arrange(date)    
+
+crypto <- crypto %>%
+  mutate(
+    Alt_market_cap = Total_market_cap - BTC_market_cap - ETH_market_cap,  # Alt = Total - BTC - ETH
+    BTC_dominance  = BTC_market_cap / Total_market_cap * 100,             # % udział BTC
+    ETH_dominance  = ETH_market_cap / Total_market_cap * 100,             # % udział ETH
+    Alt_dominance  = Alt_market_cap / Total_market_cap * 100              # % udział Alt
+  )
+
+head(crypto)   # pokaż pierwsze 6 wierszy
+tail(crypto)   # pokaż ostatnie 6 wierszy
+glimpse(crypto) # szybki podgląd wszystkich kolumn i typów danych
+
+write_csv(crypto, "crypto_marketcap_with_dominance.csv")
